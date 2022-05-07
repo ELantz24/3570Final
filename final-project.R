@@ -8,5 +8,7 @@ data_p <- data_all %>% filter(endsWith(Team,"*")) %>%
 data_all <- data_all %>%
   mutate(Team = str_replace(Team,"\\*",""))
 
+print(data_all)
+
 #Rk is sorted by NRtg
 #Help from https://stackoverflow.com/questions/22104962/how-to-remove-empty-columns-in-r/27098520
