@@ -33,4 +33,4 @@ data_rk <- data_rk %>% filter(endsWith(Team,"*")) %>% #filters out nonplayoff
 #Rk is sorted by NRtg
 #Help from https://stackoverflow.com/questions/22104962/how-to-remove-empty-columns-in-r/27098520
 
-
+#linear regression
