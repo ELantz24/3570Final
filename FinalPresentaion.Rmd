@@ -1,6 +1,6 @@
 ---
 title: "KN-NBA"
-author: "Bennett Apostol, Tate Davidson, Emily Lantz, and Donny Robbins"
+author: "Bennett Apostol, Tate Davison, Emily Lantz, and Donny Robbins"
 date: '2022-05-10'
 output: ioslides_presentation
 ---
@@ -38,13 +38,44 @@ plot(pressure)
 ```
 
 
-## Slide 4 (Insert Name)
+## KNN Algorithm: Finding ideal K
 
-- Text Block 1
-- Text Block 2
-- Text Block 3
+```{r, include=TRUE}
+## Define training and test data
 
-## Slide 5 (Insert Name)
+## Choose which variables to use
 
-- Insert Text
-- Insert Text
+## Find ideal K as done in HW3
+
+
+```
+
+
+## KNN Algorithm Continued
+
+```{r, include=TRUE}
+
+## Train Model using ideal K from previous slide
+
+## Find test error rate, evaluate performance, perhaps make ROC curve 
+
+## Make prediction using model 
+
+```
+
+## (MAYBE) Principle Component Analysis
+
+```{r, include=TRUE}
+## Subset data to desired variables, perform PCA, obtain outputs
+
+## Provide interpretations of PC1 and PC2, (I envision this being defensive and offensive aptitude)
+
+## Make biplot of PC1 and PC2 and add vectors 
+
+## Make prediction using model
+
+```
+
+
+
+
