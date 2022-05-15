@@ -99,6 +99,20 @@ prev_year_data$Team[22] = "Average"
 
 prev_year_data_csv<-write_csv(prev_year_data, "prev_year_data_csv")
 
+avg_vec <- prev_year_data %>% slice(22) %>%
+  unlist(., use.names=FALSE)
+avg_vec <- avg_vec[-c(1)] %>% as.numeric()
+my_mat <- data.matrix(data_rk[-c(1)])
+
+compare_mat <- sweep(x= my_mat, MARGIN = 2, STATS = avg_vec, 
+                     FUN= "-")
+compare_frame <- data.frame(compare_mat)                        
+compare_frame$Team <- data_rk$Team #add back team col
+compare_frame <- compare_frame %>% #move team col to front
+  select(Team,everything())
+compare_frame$row_mean <- round(rowMeans(
+  compare_frame[-c(1,6,11,12,13,16,17,18,20,21,23)]),2)
+
 ```
 
 ## Presentation Overview (Bennett)
@@ -129,10 +143,21 @@ z <- cor(x, y)
 print(z)
 ```
 
-## Data Frame Findings (Donny)
+## This Seasons NBA Rankings (Donny)
+```{r echo = FALSE}
+print(data.frame(data_rk) %>% slice(1:12) %>% 
+        select(Team,Age,W,PW,MOV,SOS,SRS,ORtg,DRtg,NRtg,Pace))
+```
+
+## Previous Champions Data (Donny)
 ```{r prevData,echo = FALSE}
-prev_year_data <- read_csv("prev_year_data.csv")
-print(prev_year_data)
+print(data.frame(prev_year_data) %>% slice(10:24) %>% 
+  select(Team,Age,W,MOV,SRS,ORtg,DRtg,NRtg,Pace))
+```
+
+## Comparing the two data sets (Donny)
+```{r}
+print(compare_frame %>% arrange(row_mean) %>% select(Team,row_mean))
 ```
 
 ## Slide 2 (Emily Lantz)
