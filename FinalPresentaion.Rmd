@@ -19,12 +19,13 @@ More importantly, for more details on the data-sets we will be using in our Fina
 - <https://www.basketball-reference.com/leagues/NBA_2022.html#all_shooting_teamopponent>
 - (Insert Basketball csv's here)
 
-## Slide 1 (Insert Name)
-
+## Data Frame Findings (Donny)
+```{r prevData,echo = FALSE}
+#print(prev_year_data)
+```
 - Bullet 1
 - Bullet 2
 - Bullet 3
-
 ## Slide 2 (Insert Name)
 
 ```{r cars, echo = TRUE}

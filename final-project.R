@@ -58,7 +58,6 @@ prev_year_data <- data_20 %>% filter(endsWith(Team,"!")) %>%
 find_winner <- function(data){
   year_data <- data %>% filter(endsWith(Team,"!")) %>%
     select(everything())
-  print(year_data)
   prev_year_data <- rbind(prev_year_data,year_data)
   return(prev_year_data)
 }
@@ -73,7 +72,7 @@ for (i in prev_frames){
 
 prev_year_data <- prev_year_data %>% mutate(Team = str_replace(Team,"\\!",""))
 summarized <- summarize_all(prev_year_data,mean)
-#summarized <- summarized[-c(1)]
+
 prev_year_data <- rbind(prev_year_data,summarized) %>%  
   mutate_if(is.numeric, ~round(., 0))
 prev_year_data$Team[22] = "Average"
