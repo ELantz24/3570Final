@@ -23,7 +23,7 @@ tidy_data <- function(file){
   for (i in desc_method){
     data[i] <- rank(-data[i],ties.method = "min")
   }
-  return (data)
+  return (data[-c(4,6)]) #removes Losses and PL
 }
 data_rk <- tidy_data("basketball data.csv")
 
