@@ -78,3 +78,33 @@ summarized <- summarize_all(prev_year_data,mean)
 prev_year_data <- rbind(prev_year_data,summarized) %>%  
   mutate_if(is.numeric, ~round(., 0))
 prev_year_data$Team[22] = "Average"
+
+
+rev_year_data_csv<-write_csv(prev_year_data, "prev_year_data_csv")
+
+#Em's Section
+#linear regression about team age v. wins
+summary(prev_year_data_csv$Age)#looking at datav
+summary(prev_year_data$W)#looking at data
+hist(prev_year_data_csv$Age, breaks = 30)#looking for normality
+plot(W ~ Age, data = prev_year_data_csv)#looking at orignal data
+
+freq_Age_lm <- lm(W ~ Age, data=prev_year_data_csv)#linear regession variable
+
+plot(freq_Age_lm)#plot regression
+
+#residual plots
+par(mfrow=c(2,2))
+plot(freq_Age_lm)
+par(mfrow=c(1,1))
+
+#creating graph about the linear regression
+ageGraph<-ggplot(prev_year_data_csv, aes(x=Age, y=W))+
+  geom_point()+
+  geom_smooth(method="lm", col="black")+
+  theme_bw() +
+  labs(title = "NBA Winners vs. Age of Team",
+       x = "Age",
+       y = "Wins")
+ageGraph
+
