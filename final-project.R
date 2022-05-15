@@ -12,8 +12,8 @@ tidy_data <- function(file){
   colnames(data)[25] <- "DFT/FGA"
   data <- data[-c(1,26,27)]
   
-  asc_method <- c("Age","L","PL","OTOV%","DeFG%","DFT/FGA")
-  desc_method <- c("W","PW","MOV","SOS","SRS","ORtg","DRtg","Pace","FTr",
+  asc_method <- c("Age","L","PL","OTOV%","DeFG%","DFT/FGA","DRtg")
+  desc_method <- c("W","PW","MOV","SOS","SRS","ORtg","Pace","FTr",
                    "3PAr","TS%","OeFG%","ORB%","OFT/FGA","DTOV","Attend./G",
                    "NRtg","DRB%")
   for (i in asc_method){
