@@ -76,3 +76,4 @@ summarized <- summarize_all(prev_year_data,mean)
 prev_year_data <- rbind(prev_year_data,summarized) %>%  
   mutate_if(is.numeric, ~round(., 0))
 prev_year_data$Team[22] = "Average"
+write.csv(prev_year_data,"prev_year_data.csv")

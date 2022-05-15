@@ -7,6 +7,15 @@ output: ioslides_presentation
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+packages <- c("knitr", "ggplot2", "tidyverse", "tidymodels", 
+              "ISLR", "caret", "class","glue","kknn")
+installed_packages <- packages %in% rownames(installed.packages())
+if (any(installed_packages == FALSE)) {
+  install.packages(packages[!installed_packages])
+}
+
+# Packages loading
+invisible(lapply(packages, library, character.only = TRUE))
 ```
 
 ## Presentation Overview
@@ -21,7 +30,8 @@ More importantly, for more details on the data-sets we will be using in our Fina
 
 ## Data Frame Findings (Donny)
 ```{r prevData,echo = FALSE}
-#print(prev_year_data)
+prev_year_data <- read_csv("prev_year_data.csv")
+print(prev_year_data)
 ```
 - Bullet 1
 - Bullet 2
