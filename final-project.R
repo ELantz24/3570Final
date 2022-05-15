@@ -13,10 +13,10 @@ tidy_data <- function(file){
   colnames(data)[25] <- "DFT/FGA"
   data <- data[-c(1,26,27)]
   
-  asc_method <- c("Age","L","PL","OTOV%","DeFG%","DFT/FGA","DRtg")
+  asc_method <- c("L","PL","OTOV%","DeFG%","DFT/FGA","DRtg")
   desc_method <- c("W","PW","MOV","SOS","SRS","ORtg","Pace","FTr",
                    "3PAr","TS%","OeFG%","ORB%","OFT/FGA","DTOV","Attend./G",
-                   "NRtg","DRB%")
+                   "NRtg","DRB%","Age")
   for (i in asc_method){
     data[i] <- rank(data[i],ties.method = "min")
   }
@@ -81,6 +81,20 @@ prev_year_data$Team[22] = "Average"
 
 
 rev_year_data_csv<-write_csv(prev_year_data, "prev_year_data_csv")
+#################################################
+#Comparison Frame Donny
+avg_vec <- prev_year_data %>% slice(22) %>%
+  unlist(., use.names=FALSE)
+avg_vec <- avg_vec[-c(1)] %>% as.numeric()
+my_mat <- data.matrix(data_rk[-c(1)])
+
+compare_mat <- sweep(x= my_mat, MARGIN = 2, STATS = avg_vec, 
+                     FUN= "-")
+compare_frame <- data.frame(compare_mat)                        
+compare_frame$Team <- data_rk$Team #add back team col
+compare_frame <- compare_frame %>% #move team col to front
+  select(Team,everything())
+compare_frame$row_mean <- round(rowMeans(compare_frame[-c(1)]),2) 
 
 #Em's Section
 #linear regression about team age v. wins
