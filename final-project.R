@@ -41,23 +41,69 @@ data_14 <- tidy_data("NBA14-15 data.csv")
 data_13 <- tidy_data("NBA13-14 data.csv")
 data_12 <- tidy_data("NBA12-13 data.csv")
 data_11 <- tidy_data("NBA11-12 data.csv")
+data_10 <- tidy_data("NBA10-11 data.csv")
+data_09 <- tidy_data("NBA09-10 data.csv")
+data_08 <- tidy_data("NBA08-09 data.csv")
+data_07 <- tidy_data("NBA07-08 data.csv")
+data_06 <- tidy_data("NBA06-07 data.csv")
+data_05 <- tidy_data("NBA05-06 data.csv")
+data_04 <- tidy_data("NBA04-05 data.csv")
+data_03 <- tidy_data("NBA03-04 data.csv")
+data_02 <- tidy_data("NBA02-03 data.csv")
+data_01 <- tidy_data("NBA01-02 data.csv")
+data_00 <- tidy_data("NBA00-01 data.csv")
 
-ten_year_data <- data_20 %>% filter(endsWith(Team,"!")) %>%
+
+prev_year_data <- data_20 %>% filter(endsWith(Team,"!")) %>%
   select(everything())
 find_winner <- function(data){
   year_data <- data %>% filter(endsWith(Team,"!")) %>%
     select(everything())
-  print(year_data)
-  ten_year_data <- rbind(ten_year_data,year_data)
-  return(ten_year_data)
+  prev_year_data <- rbind(prev_year_data,year_data)
+  return(prev_year_data)
 }
-ten_frames <- list(data_19,data_18,data_17,data_16,data_15,data_14,
-                        data_13,data_12,data_11)
+prev_frames <- list(data_19,data_18,data_17,data_16,data_15,data_14,
+                   data_13,data_12,data_11,data_10,data_09,
+                   data_08,data_07,data_06,data_05,data_04,
+                   data_03,data_02,data_01,data_00)
 
-for (i in ten_frames){
-  ten_year_data <- find_winner(i)
+for (i in prev_frames){
+  prev_year_data <- find_winner(i)
 }
 
-ten_year_data <- ten_year_data %>% mutate(Team = str_replace(Team,"\\!",""))
+prev_year_data <- prev_year_data %>% mutate(Team = str_replace(Team,"\\!",""))
+summarized <- summarize_all(prev_year_data,mean)
 
+
+prev_year_data <- rbind(prev_year_data,summarized) %>%  
+  mutate_if(is.numeric, ~round(., 0))
+prev_year_data$Team[22] = "Average"
+
+prev_year_data_csv<-write_csv(prev_year_data, "prev_year_data_csv")
+
+#Em's Section
+#linear regression about team age v. wins
+summary(prev_year_data_csv$Age)#looking at datav
+summary(prev_year_data$W)#looking at data
+hist(prev_year_data_csv$Age, breaks = 30)#looking for normality
+plot(W ~ Age, data = prev_year_data_csv)#looking at orignal data
+
+freq_Age_lm <- lm(W ~ Age, data=prev_year_data_csv)#linear regession variable
+
+plot(freq_Age_lm)#plot regression
+
+#residual plots
+par(mfrow=c(2,2))
+plot(freq_Age_lm)
+par(mfrow=c(1,1))
+
+#creating graph about the linear regression
+ageGraph<-ggplot(prev_year_data_csv, aes(x=Age, y=W))+
+  geom_point()+
+  geom_smooth(method="lm", col="black")+
+  theme_bw() +
+  labs(title = "NBA Winners vs. Age of Team",
+       x = "Age",
+       y = "Wins")
+ageGraph
 

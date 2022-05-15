@@ -1,6 +1,6 @@
 ---
 title: "KN-NBA"
-author: "Bennett Apostol, Tate Davidson, Emily Lantz, and Donny Robbins"
+author: "Bennett Apostol, Tate Davison, Emily Lantz, and Donny Robbins"
 date: '2022-05-10'
 output: ioslides_presentation
 ---
@@ -19,16 +19,24 @@ More importantly, for more details on the data-sets we will be using in our Fina
 - <https://www.basketball-reference.com/leagues/NBA_2022.html#all_shooting_teamopponent>
 - (Insert Basketball csv's here)
 
-## Slide 1 (Insert Name)
-
+## Data Frame Findings (Donny)
+```{r prevData,echo = FALSE}
+#print(prev_year_data)
+```
 - Bullet 1
 - Bullet 2
 - Bullet 3
+## Slide 2 (Emily Lantz)
 
-## Slide 2 (Insert Name)
+```{r}
+#summary(data_rk$Age)
+#hist(data_rk$Age)
+#data_rk_df <- as.data.frame(data_rk)
+#data_rk_matrix<-as.matrix(data_rk)
+#plot(frequency ~ Age, data = data_rk_matrix)
 
-```{r cars, echo = TRUE}
-summary(cars)
+
+
 ```
 
 ## Slide 3 (Insert Name)
@@ -38,13 +46,44 @@ plot(pressure)
 ```
 
 
-## Slide 4 (Insert Name)
+## KNN Algorithm: Finding ideal K
 
-- Text Block 1
-- Text Block 2
-- Text Block 3
+```{r, include=TRUE}
+## Define training and test data
 
-## Slide 5 (Insert Name)
+## Choose which variables to use
 
-- Insert Text
-- Insert Text
+## Find ideal K as done in HW3
+
+
+```
+
+
+## KNN Algorithm Continued
+
+```{r, include=TRUE}
+
+## Train Model using ideal K from previous slide
+
+## Find test error rate, evaluate performance, perhaps make ROC curve 
+
+## Make prediction using model 
+
+```
+
+## (MAYBE) Principle Component Analysis
+
+```{r, include=TRUE}
+## Subset data to desired variables, perform PCA, obtain outputs
+
+## Provide interpretations of PC1 and PC2, (I envision this being defensive and offensive aptitude)
+
+## Make biplot of PC1 and PC2 and add vectors 
+
+## Make prediction using model
+
+```
+
+
+
+
