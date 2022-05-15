@@ -56,7 +56,7 @@ plot(pressure)
 ```
 
 
-## KNN Algorithm: Finding ideal K
+## KNN Algorithm: Finding ideal K (Tate)
 
 ```{r, include=TRUE}
 ## Define training and test data
@@ -69,7 +69,7 @@ plot(pressure)
 ```
 
 
-## KNN Algorithm Continued
+## KNN Algorithm Continued (Tate)
 
 ```{r, include=TRUE}
 
@@ -81,7 +81,7 @@ plot(pressure)
 
 ```
 
-## (MAYBE) Principle Component Analysis
+## (MAYBE) Principle Component Analysis (Tate)
 
 ```{r, include=TRUE}
 ## Subset data to desired variables, perform PCA, obtain outputs

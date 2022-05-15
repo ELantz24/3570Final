@@ -122,4 +122,3 @@ ageGraph<-ggplot(prev_year_data_csv, aes(x=Age, y=W))+
        x = "Age",
        y = "Wins")
 ageGraph
-
