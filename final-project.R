@@ -53,23 +53,27 @@ data_01 <- tidy_data("NBA01-02 data.csv")
 data_00 <- tidy_data("NBA00-01 data.csv")
 
 
-ten_year_data <- data_20 %>% filter(endsWith(Team,"!")) %>%
+prev_year_data <- data_20 %>% filter(endsWith(Team,"!")) %>%
   select(everything())
 find_winner <- function(data){
   year_data <- data %>% filter(endsWith(Team,"!")) %>%
     select(everything())
   print(year_data)
-  ten_year_data <- rbind(ten_year_data,year_data)
-  return(ten_year_data)
+  prev_year_data <- rbind(prev_year_data,year_data)
+  return(prev_year_data)
 }
-ten_frames <- list(data_19,data_18,data_17,data_16,data_15,data_14,
+prev_frames <- list(data_19,data_18,data_17,data_16,data_15,data_14,
                    data_13,data_12,data_11,data_10,data_09,
                    data_08,data_07,data_06,data_05,data_04,
                    data_03,data_02,data_01,data_00)
 
-for (i in ten_frames){
-  ten_year_data <- find_winner(i)
+for (i in prev_frames){
+  prev_year_data <- find_winner(i)
 }
 
-ten_year_data <- ten_year_data %>% mutate(Team = str_replace(Team,"\\!",""))
-
+prev_year_data <- prev_year_data %>% mutate(Team = str_replace(Team,"\\!",""))
+summarized <- summarize_all(prev_year_data,mean)
+#summarized <- summarized[-c(1)]
+prev_year_data <- rbind(prev_year_data,summarized) %>%  
+  mutate_if(is.numeric, ~round(., 0))
+prev_year_data$Team[22] = "Average"
