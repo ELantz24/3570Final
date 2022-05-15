@@ -99,9 +99,9 @@ compare_frame$row_mean <- round(rowMeans(
 
 #Em's Section
 #linear regression about team age v. wins
-summary(prev_year_data_csv$Age)#looking at datav
-summary(prev_year_data$W)#looking at data
-hist(prev_year_data_csv$Age, breaks = 30)#looking for normality
+AgeSum<-summary(prev_year_data_csv$Age)#looking at data
+WSum<-summary(prev_year_data$W)#looking at data
+AgeHist<-hist(prev_year_data_csv$Age, breaks = 30)#looking for normality
 plot(W ~ Age, data = prev_year_data_csv)#looking at orignal data
 
 freq_Age_lm <- lm(W ~ Age, data=prev_year_data_csv)#linear regession variable
