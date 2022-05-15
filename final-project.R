@@ -94,7 +94,8 @@ compare_frame <- data.frame(compare_mat)
 compare_frame$Team <- data_rk$Team #add back team col
 compare_frame <- compare_frame %>% #move team col to front
   select(Team,everything())
-compare_frame$row_mean <- round(rowMeans(compare_frame[-c(1)]),2) 
+compare_frame$row_mean <- round(rowMeans(
+  compare_frame[-c(1,6,11,12,13,16,17,18,20,21,23)]),2) 
 
 #Em's Section
 #linear regression about team age v. wins
