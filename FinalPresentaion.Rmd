@@ -1,6 +1,6 @@
 ---
 title: "KN-NBA"
-author: "Bennett Apostol, Tate Davidson, Donny Dew, and Emily Lantz"
+author: "Bennett Apostol, Tate Davidson, Emily Lantz, and Donny Robbins"
 date: '2022-05-10'
 output: ioslides_presentation
 ---
@@ -9,27 +9,42 @@ output: ioslides_presentation
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
-## R Markdown
+## Presentation Overview
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is R Markdown document describes the our group final project outline for MATH/COSC 3570: Introduction to Data Science! RMarkdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+However, we plan to highlight the more complex functions of R, using concepts like **K-Nearest Neighbors (KNN)** and **Linear Regression**, and incorporating them into data from the NBA Playoffs. 
 
-## Slide with Bullets
+More importantly, for more details on the data-sets we will be using in our Final Project, click on the following links below:
+- <https://www.basketball-reference.com/leagues/NBA_2022.html#all_shooting_teamopponent>
+- (Insert Basketball csv's here)
+
+## Slide 1 (Insert Name)
 
 - Bullet 1
 - Bullet 2
 - Bullet 3
 
-## Slide with R Output
+## Slide 2 (Insert Name)
 
 ```{r cars, echo = TRUE}
 summary(cars)
 ```
 
-## Slide with Plot
+## Slide 3 (Insert Name)
 
 ```{r pressure}
 plot(pressure)
 ```
 
+
+## Slide 4 (Insert Name)
+
+- Text Block 1
+- Text Block 2
+- Text Block 3
+
+## Slide 5 (Insert Name)
+
+- Insert Text
+- Insert Text
