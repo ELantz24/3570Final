@@ -109,7 +109,6 @@ However, we plan to highlight the more complex functions of R, using concepts li
 
 More importantly, for more details on the data-sets we will be using in our Final Project, click on the following links below:
 - <https://www.basketball-reference.com/leagues/NBA_2022.html#all_shooting_teamopponent>
-- (Insert Basketball csv's here)
 
 ## Data Frame Findings (Donny)
 ```{r prevData,echo = FALSE}
