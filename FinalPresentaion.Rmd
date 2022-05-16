@@ -162,51 +162,96 @@ ageGraph
 
 ```
 
-## Slide 3 (Insert Name)
+## Slide 10 (Tate)
 
-```{r pressure}
-plot(pressure)
-```
+- *K-Nearest-Neighbors* 
+
+- Predicting Probability of winning a championship using 22 variables
+
+- 10 seasons worth of data on every NBA team
+
+- Classification based on probability
+```{r, echo=FALSE}
+
+## Defining train and test data
+knn_trn <- data_10 %>%
+  rbind(data_11) %>%
+  rbind(data_12) %>%
+  rbind(data_13) %>%
+  rbind(data_14) %>%
+  rbind(data_16) %>%
+  rbind(data_17) %>%
+  rbind(data_18)
+
+knn_tst <- data_15 %>%
+  rbind(data_19)
+
+## Adding logical column: true if the team won the title
+knn_trn <- endsWith(x = knn_trn$Team, suffix = "!") %>%
+  cbind(knn_trn)
+
+knn_trn <- rename(knn_trn, "champ" = .)
+knn_trn$champ <- as_factor(knn_trn$champ)
 
 
-## KNN Algorithm: Finding ideal K (Tate)
+knn_tst <- endsWith(x = knn_tst$Team, suffix = "!") %>%
+  cbind(knn_tst)
 
-```{r, include=TRUE}
-## Define training and test data
-
-## Choose which variables to use
-
-## Find ideal K as done in HW3
-
-
-```
-
-
-## KNN Algorithm Continued (Tate)
-
-```{r, include=TRUE}
-
-## Train Model using ideal K from previous slide
-
-## Find test error rate, evaluate performance, perhaps make ROC curve 
-
-## Make prediction using model 
-
-```
-
-## (MAYBE) Principle Component Analysis (Tate)
-
-```{r, include=TRUE}
-## Subset data to desired variables, perform PCA, obtain outputs
-
-## Provide interpretations of PC1 and PC2, (I envision this being defensive and offensive aptitude)
-
-## Make biplot of PC1 and PC2 and add vectors 
-
-## Make prediction using model
+knn_tst <- rename(knn_tst, "champ" = .)
+knn_tst$champ <- as_factor(knn_tst$champ)
 
 ```
 
 
+## Slide 11 (Tate)
 
+```{r, include=FALSE}
+
+## Create and train model
+knn_mdl <- parsnip::nearest_neighbor(neighbors = 3) %>%
+  set_mode("classification") %>%
+  set_engine("kknn")
+
+knn_fit <- knn_mdl %>%
+  fit(champ ~ ., data = select(knn_trn, -c("Team")))
+
+
+## Performance on test data
+
+knn_results <- bind_cols(
+  knn_tst$Team,
+  knn_tst$champ,
+  predict(knn_fit, select(knn_tst, -c("Team"))),
+  predict(knn_fit, select(knn_tst, -c("Team")), 
+          type = "prob")
+)
+
+knn_results <- rename(knn_results, "Champ" = ...2, "Team" = ...1)
+
+
+knn_pred <- pull(
+  predict(knn_fit, select(knn_tst, -c("Team"))))
+
+```
+- Prediction results on test data: 
+```{r, echo=FALSE}
+table(knn_pred, knn_tst$champ)
+```
+
+- Test error rate
+```{r, echo=FALSE}
+mean(knn_pred != knn_tst$champ)
+```
+
+## Slide 12 (Tate)
+
+- Correctly predicted Cavaliers to win the 2015-2016 finals 
+```{r, echo=FALSE}
+knn_results[2:5,]
+```
+- Incorrectly predicted Raptors would win the 2019-2020 finals
+```{r, echo=FALSE}
+knn_results[52,]
+
+```
 
