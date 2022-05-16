@@ -101,14 +101,33 @@ prev_year_data_csv<-write_csv(prev_year_data, "prev_year_data_csv")
 
 ```
 
-## Presentation Overview
+## Presentation Overview (Bennett)
+This is R Markdown document describes our group final project for MATH/COSC 3570: Introduction to Data Science — ***The NBA Playoffs!*** We examined the winners of the NBA Playoffs from the last 21 years, and observed if there were any trends or correlations between the winning teams.
 
-This is R Markdown document describes the our group final project outline for MATH/COSC 3570: Introduction to Data Science! RMarkdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. 
+We plan to highlight the more complex functions of R, using concepts like **K-Nearest Neighbors (KNN)** and **Linear Regression**, and incorporating them into data from the NBA Playoffs. 
 
-However, we plan to highlight the more complex functions of R, using concepts like **K-Nearest Neighbors (KNN)** and **Linear Regression**, and incorporating them into data from the NBA Playoffs. 
+For more details on the data-sets we will be using in our Final Project, click on the following links below:
+<https://www.basketball-reference.com/leagues/NBA_2022.html#all_shooting_teamopponent>
 
-More importantly, for more details on the data-sets we will be using in our Final Project, click on the following links below:
-- <https://www.basketball-reference.com/leagues/NBA_2022.html#all_shooting_teamopponent>
+## Wins vs. Simple Rating System
+```{r, echo = FALSE}
+SRS_plot <- ggplot(prev_year_data, aes(x = W, y = SRS)) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, method = "lm") + 
+  labs(x = "Wins",
+       y = "Simple Rating System",
+       title = "Wins vs. Simple Rating System")
+SRS_plot
+```
+
+## Correlation Coefficient for W vs. SRS
+```{r, echo = TRUE}
+x = prev_year_data$W 
+y = prev_year_data$SRS 
+z <- cor(x, y)
+
+print(z)
+```
 
 ## Data Frame Findings (Donny)
 ```{r prevData,echo = FALSE}
