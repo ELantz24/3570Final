@@ -80,7 +80,7 @@ prev_year_data <- rbind(prev_year_data,summarized) %>%
 prev_year_data$Team[22] = "Average"
 
 
-rev_year_data_csv<-write_csv(prev_year_data, "prev_year_data_csv")
+prev_year_data_csv<-write_csv(prev_year_data, "prev_year_data_csv")
 #################################################
 #Comparison Frame Donny
 avg_vec <- prev_year_data %>% slice(22) %>%
