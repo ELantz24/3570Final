@@ -137,34 +137,32 @@ print(prev_year_data)
 
 ## Slide 2 (Emily Lantz)
 ```{r,echo = TRUE}
-summary(prev_year_data_csv$Age)#looking at data
+summary(prev_year_data_csv$Age)
 ```
 ## Slide 3 (Emily Lantz)
 ```{r,echo = TRUE}
-summary(prev_year_data$W)#looking at data
+summary(prev_year_data$W)
 ```
 ## Slide 4 (Emily Lantz)
 ```{r,echo = TRUE}
-hist(prev_year_data_csv$Age, breaks = 30)#looking for normality
+hist(prev_year_data_csv$Age, breaks = 30)
 ```
 ## Slide 5 (Emily Lantz)
 ```{r,echo = TRUE}
-plot(W ~ Age, data = prev_year_data_csv)#looking at original data
+plot(W ~ Age, data = prev_year_data_csv)
 ```
 ## Slide 6 (Emily Lantz)
 ```{r,echo = TRUE}
-freq_Age_lm <- lm(W ~ Age, data=prev_year_data_csv)#linear regression variable
+freq_Age_lm <- lm(W ~ Age, data=prev_year_data_csv)e
 ```
 ## Slide 7 (Emily Lantz)
 ```{r,echo = TRUE}
-plot(freq_Age_lm)#plot regression
+plot(freq_Age_lm)
 ```
 ## Slide 8 (Emily Lantz)
 ```{r,echo = TRUE}
-#residual plots
-par(mfrow=c(2,2))
-plot(freq_Age_lm)
-par(mfrow=c(1,1))
+ggplot(data=prev_year_data_csv, aes(x=W, y=Age))+ geom_point(alpha=0.5)+
+  geom_smooth(method="lm", fill="yellow", se=TRUE)
 ```
 ## Slide 9 (Emily Lantz)
 ```{r,echo = FALSE}
