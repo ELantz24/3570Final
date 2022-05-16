@@ -153,18 +153,9 @@ plot(W ~ Age, data = prev_year_data_csv)
 ```
 ## Slide 6 (Emily Lantz)
 ```{r,echo = TRUE}
-freq_Age_lm <- lm(W ~ Age, data=prev_year_data_csv)e
+freq_Age_lm <- lm(W ~ Age, data=prev_year_data_csv)
 ```
 ## Slide 7 (Emily Lantz)
-```{r,echo = TRUE}
-plot(freq_Age_lm)
-```
-## Slide 8 (Emily Lantz)
-```{r,echo = TRUE}
-ggplot(data=prev_year_data_csv, aes(x=W, y=Age))+ geom_point(alpha=0.5)+
-  geom_smooth(method="lm", fill="yellow", se=TRUE)
-```
-## Slide 9 (Emily Lantz)
 ```{r,echo = FALSE}
 #creating graph about the linear regression
 ageGraph<-ggplot(prev_year_data_csv, aes(x=Age, y=W))+
@@ -177,6 +168,13 @@ ageGraph<-ggplot(prev_year_data_csv, aes(x=Age, y=W))+
 ageGraph
 
 ```
+
+## Slide 8 (Emily Lantz)
+```{r,echo = TRUE}
+ggplot(data=prev_year_data_csv, aes(x=W, y=Age))+ geom_point(alpha=0.5)+
+  geom_smooth(method="lm", fill="yellow", se=TRUE)
+```
+
 
 ## Slide 10 (Tate)
 
